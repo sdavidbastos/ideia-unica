@@ -1,5 +1,5 @@
 function Tempo({ staticDateString }) {
-    console.log("> Passando pelo FrontEnd")
+  console.log("> Passando pelo FrontEnd");
   const dynamicDate = new Date();
   const dynamicDateString = dynamicDate.toGMTString();
 
@@ -12,8 +12,9 @@ function Tempo({ staticDateString }) {
 }
 
 // Na disso vai para o backend
-export function getStaticProps() {
-    console.log("> Passando pelo getStaticProps()")
+export async function getStaticProps() {
+  console.log("> Passando pelo getStaticProps()");
+
   const staticDate = new Date();
   const staticDateString = staticDate.toGMTString();
 
@@ -21,7 +22,10 @@ export function getStaticProps() {
     props: {
       staticDateString,
     },
+    revalidate: 1,
   };
 }
+
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export default Tempo;
